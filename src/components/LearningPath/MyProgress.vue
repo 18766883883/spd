@@ -1,13 +1,23 @@
 <template>
 <div>
-    <el-steps direction="vertical" :active="active" finish-status="success">
-        <el-step  class="my-step" v-for="item in recommendedPath" :key="item.id" :title="item.name" @click.native="clickKnowledge(item.name)">
-        </el-step>
-    </el-steps>
+    <div class="progress-title">
+        <i class="el-icon-s-data"></i>
+        学习进展
+    </div>
+    <div id="myChart" :style="{width: '300px', height: '300px'}"></div>
+    <div class="progress-status">
+        <el-col :span="8">
+            <div>未做</div>
+            <div>已完成</div>
+            <div></div>
+        </el-col>
+        <el-col :span="8"></el-col>
+        <el-col :span="8"></el-col>
+    </div>
 </div>
 </template>
-
 <script>
+import echarts from 'echarts'
 export default {
     name: "myProgress",
 
@@ -21,70 +31,38 @@ export default {
         userId: Number
     },
     methods: {
-        getRecommendedPath(userId, time) {
-            this.$axios({
-                    method: "GET",
-                    url: `/api/recommendedPath?userId=${userId}&time=${time}`,
-                    timeout: 30000
-                })
-                .then(res => {
-                    this.recommendedPath = res.data;
-                })
-                .catch(err => {
-                    if (err.response) {
-                        if (err.response.status === 500) {
-                            this.$message({
-                                message: "获取数据失败：服务器错误",
-                                type: "error"
-                            });
-                        }
-                    } else {
-                        this.$message({
-                            message: "获取数据失败:网络错误",
-                            type: "error"
-                        });
-                    }
-                })
-        },
-        getRecommendedPath(userId, knowledgeType) {},
-        clickKnowledge(name) {
-            console.log(name)
+        drawChart() {
+            // 基于准备好的dom，初始化echarts实例
+            let myChart = this.$echarts.init(document.getElementById('myChart'))
+            // 绘制图表
+            myChart.setOption({
+                title: {
+                    text: '在Vue中使用echarts'
+                },
+                tooltip: {},
+                xAxis: {
+                    data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+                },
+                yAxis: {},
+                series: [{
+                    name: '销量',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20]
+                }]
+            })
         }
     },
 
     mounted() {
-        // this.getRecommendedPath(this.userId);
-        this.recommendedPath = [{
-            name: '顺序表',
-            id: 'contiguousList'
-        },{
-            name: '单链表',
-            id: 'singlyLinkedList'
-        },{
-            name: '栈',
-            id: 'stack'
-        },{
-            name: '队列',
-            id: 'queue'
-        },{
-            name: '完全二叉树',
-            id: 'completeBinaryTree'
-        },{
-            name: '邻接矩阵',
-            id: 'adjacencyMatrix'
-        },{
-            name: '广度优先搜索',
-            id: 'breadthFirstSearch'
-        },{
-            name: '折半查找',
-            id: 'binarySearch'
-        },{
-            name: '快速排序',
-            id: 'quickSort'
-        },
-        ]
+        this.drawChart();
     }
-};
+}
 </script>
+
 <style scoped>
+.progress-title {
+    margin-bottom: 10px;
+    text-align: left;
+    font-size: 20px;
+}
 </style>

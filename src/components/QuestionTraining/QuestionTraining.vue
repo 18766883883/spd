@@ -3,13 +3,13 @@
     <el-col :span="18">
         <div class="left-home-window">
             <el-table :data="tableData.slice((currentPage-1)*pageSize,currentPage*pageSize)" title="训练">
-              <el-table-column prop="id" label="#" width="60" header-align="center"></el-table-column>
+              <el-table-column prop="id" label="#" header-align="center"></el-table-column>
               <el-table-column prop="title" label="题目名称" header-align="center" align="center"></el-table-column>
-              <el-table-column prop="type" label="题目类型" width="300" header-align="center" align="center"></el-table-column>
-              <el-table-column prop="difficulty" label="难度" width="300" header-align="center" align="center"></el-table-column>
+              <el-table-column prop="type" label="题目类型" header-align="center" align="center"></el-table-column>
+              <el-table-column prop="difficulty" label="难度" header-align="center" align="center"></el-table-column>
 
-              <el-table-column prop="number" label="完成人数" width="300" header-align="center" align="center"></el-table-column>
-                <el-table-column label="操作" width="100">
+              <el-table-column prop="number" label="完成人数" header-align="center" align="center"></el-table-column>
+                <el-table-column label="操作">
                     <template slot-scope="scope">
                         <el-button type="text" size="small">查看</el-button>
                     </template>

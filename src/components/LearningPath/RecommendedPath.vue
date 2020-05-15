@@ -4,10 +4,18 @@
         <i class="el-icon-s-opportunity"></i>
         学习路径推荐
     </div>
-    <el-steps direction="vertical" :active="active" finish-status="success">
+    <el-steps direction="vertical" :active="active" finish-status="finish" class="steps" >
         <el-step class="my-step" v-for="item in recommendedPath" :key="item.id" :title="item.name" @click.native="clickKnowledge(item.name)">
         </el-step>
     </el-steps>
+    <!-- 消息提示 -->
+    <el-dialog title="提示" :visible.sync="problemChioceDialogVisible" :close-on-click-modal="false" class="path-dialog">
+        <div class="msg">确定练习知识点<b>{{knowledgeType}}</b>的相关题目吗?</div>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click.native="problemChioceDialogVisible = false">取消</el-button>
+        <el-button type="primary" @click.native="getRecommendedProblem">确定</el-button>
+      </div>
+    </el-dialog>
 </div>
 </template>
 
@@ -18,7 +26,9 @@ export default {
     data() {
         return {
             recommendedPath: [],
-            active: 10
+            active: 10,
+            problemChioceDialogVisible: false,
+            knowledgeType: "随机"
         };
     },
     props: {
@@ -50,8 +60,10 @@ export default {
                     }
                 })
         },
-        getRecommendedPath(userId, knowledgeType) {},
+        getRecommendedProblem(userId, knowledgeType) {},
         clickKnowledge(name) {
+            this.problemChioceDialogVisible = true
+            this.knowledgeType = name
             console.log(name)
         }
     },
@@ -92,12 +104,27 @@ export default {
 
 <style scoped>
 .path-title {
-text-align:left;
-font-size: 20px;
+    margin-bottom: 10px;
+    text-align: left;
+    font-size: 20px;
 }
+
 .my-step:hover {
     cursor: pointer;
     color: #67c23a;
     border-color: #67c23a;
+}
+
+.steps {
+    height: 400px;
+}
+
+.msg {
+    font-size: 20px;
+}
+
+.path-dialog{
+    width: 50%;
+    margin: 0 auto;
 }
 </style>
