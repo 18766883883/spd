@@ -1,11 +1,7 @@
 <template>
 <div>
-    <div class="path-title">
-        <i class="el-icon-s-opportunity"></i>
-        学习路径推荐
-    </div>
     <el-steps direction="vertical" :active="active" finish-status="success">
-        <el-step class="my-step" v-for="item in recommendedPath" :key="item.id" :title="item.name" @click.native="clickKnowledge(item.name)">
+        <el-step  class="my-step" v-for="item in recommendedPath" :key="item.id" :title="item.name" @click.native="clickKnowledge(item.name)">
         </el-step>
     </el-steps>
 </div>
@@ -13,7 +9,7 @@
 
 <script>
 export default {
-    name: "recommendedPath",
+    name: "myProgress",
 
     data() {
         return {
@@ -61,43 +57,34 @@ export default {
         this.recommendedPath = [{
             name: '顺序表',
             id: 'contiguousList'
-        }, {
+        },{
             name: '单链表',
             id: 'singlyLinkedList'
-        }, {
+        },{
             name: '栈',
             id: 'stack'
-        }, {
+        },{
             name: '队列',
             id: 'queue'
-        }, {
+        },{
             name: '完全二叉树',
             id: 'completeBinaryTree'
-        }, {
+        },{
             name: '邻接矩阵',
             id: 'adjacencyMatrix'
-        }, {
+        },{
             name: '广度优先搜索',
             id: 'breadthFirstSearch'
-        }, {
+        },{
             name: '折半查找',
             id: 'binarySearch'
-        }, {
+        },{
             name: '快速排序',
             id: 'quickSort'
-        }, ]
+        },
+        ]
     }
 };
 </script>
-
 <style scoped>
-.path-title {
-text-align:left;
-font-size: 20px;
-}
-.my-step:hover {
-    cursor: pointer;
-    color: #67c23a;
-    border-color: #67c23a;
-}
 </style>

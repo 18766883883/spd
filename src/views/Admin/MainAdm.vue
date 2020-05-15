@@ -1,61 +1,78 @@
 <template>
-    <div>
-      <el-col :span="6"><div class="grid-content bg-white"></div></el-col>
-      <el-col :span="12">
+<div>
+    <el-col :span="3">
+        <div class="grid-content bg-white"></div>
+    </el-col>
+    <el-col :span="18">
         <div>
-          <el-row>
-            <el-col :span="10">
-              <el-button round>班级系统</el-button>
-              <el-button round @click="ToQuestion">题目训练</el-button>
-              <el-button round>众包平台</el-button>
-              <el-button round>信息管理</el-button>
-            </el-col>
-            <el-col :span="6">
-            </el-col>
-          </el-row>
-          <el-divider></el-divider>
-          <router-view></router-view>
+            <el-row>
+                <el-col :span="5">
+                    <el-button round>班级系统</el-button>
+                </el-col>
+                <el-col :span="5">
+                    <el-button round @click="ToQuestion">题目训练</el-button>
+                </el-col>
+                <el-col :span="5">
+                    <el-button round>众包平台</el-button>
+                </el-col>
+                <el-col :span="5">
+                    <el-button round>信息管理</el-button>
+                </el-col>
+                <el-col :span="4">
+                </el-col>
+            </el-row>
+            <el-divider></el-divider>
+            <router-view></router-view>
         </div>
-      </el-col>
-      <el-col :span="6"><div class="grid-content bg-white"></div></el-col>
+    </el-col>
+    <el-col :span="3">
+        <div class="grid-content bg-white"></div>
+    </el-col>
 
-    </div>
+</div>
 </template>
 
 <script>
-    export default {
-      name: "MainAdm",
-      methods:{
-          ToQuestion(){
-            this.$router.push({name:'AdmQuestion'});
-          }
-      }
+export default {
+    name: "MainAdm",
+    methods: {
+        ToQuestion() {
+            this.$router.push({
+                name: 'AdmQuestion'
+            });
+        }
     }
+}
 </script>
 
 <style scoped>
-
-  .el-col {
+.el-col {
     border-radius: 4px;
-  }
-  .bg-purple-dark {
+}
+
+.bg-purple-dark {
     background: #99a9bf;
-  }
-  .bg-purple {
+}
+
+.bg-purple {
     background: #d3dce6;
-  }
-  .bg-white {
+}
+
+.bg-white {
     background: white;
-  }
-  .bg-purple-light {
+}
+
+.bg-purple-light {
     background: #e5e9f2;
-  }
-  .grid-content {
+}
+
+.grid-content {
     border-radius: 4px;
     min-height: 36px;
-  }
-  .row-bg {
+}
+
+.row-bg {
     padding: 10px 0;
     background-color: #f9fafc;
-  }
+}
 </style>
