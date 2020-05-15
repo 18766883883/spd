@@ -3,27 +3,30 @@
     <el-col :span="3">
         <div class="grid-content bg-white"></div>
     </el-col>
+
     <el-col :span="18">
-        <div>
-            <el-row>
-                <el-col :span="5">
-                    <el-button round>班级系统</el-button>
-                </el-col>
-                <el-col :span="5">
-                    <el-button round @click="ToQuestion">题目训练</el-button>
-                </el-col>
-                <el-col :span="5">
-                    <el-button round>众包平台</el-button>
-                </el-col>
-                <el-col :span="5">
-                    <el-button round>信息管理</el-button>
-                </el-col>
-                <el-col :span="4">
-                </el-col>
-            </el-row>
-            <el-divider></el-divider>
-            <router-view></router-view>
-        </div>
+        <el-row class="top-menu">
+          <i class="el-icon-menu"></i>
+            板块-全部
+        </el-row>
+        <el-row>
+            <el-col :span="4">
+                <el-button class="my-btn" style="background:#F1C40F">班级系统</el-button>
+            </el-col>
+            <el-col :span="4">
+                <el-button class="my-btn" style="background:#3498DB" @click="ToQuestion">题目训练</el-button>
+            </el-col>
+            <el-col :span="4">
+                <el-button class="my-btn" style="background:#2ECC71">众包平台</el-button>
+            </el-col>
+            <el-col :span="4">
+                <el-button class="my-btn" style="background:#9B59B6">信息管理</el-button>
+            </el-col>
+            <el-col :span="8">
+            </el-col>
+        </el-row>
+        <el-divider class="my-divider"></el-divider>
+        <router-view></router-view>
     </el-col>
     <el-col :span="3">
         <div class="grid-content bg-white"></div>
@@ -74,5 +77,24 @@ export default {
 .row-bg {
     padding: 10px 0;
     background-color: #f9fafc;
+}
+
+.top-menu {
+  text-align: left;
+  font-size: 26px;
+  margin: 10px 10px;
+}
+
+.my-btn {
+  height: 100px;
+  width: 60%;
+  border-radius: 10px;
+  font-size: 20px;
+  color:whitesmoke;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .12), 0 0 6px 0 rgba(0, 0, 0, .04);
+}
+
+.my-divider{
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .12), 0 0 6px 0 rgba(0, 0, 0, .04);
 }
 </style>
