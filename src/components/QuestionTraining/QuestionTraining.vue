@@ -2,18 +2,28 @@
 <div>
     <el-col :span="18">
         <div class="left-home-window">
-            <el-table :data="tableData" title="训练">
-                <el-table-column prop="id" label="#" width="30" header-align="center"></el-table-column>
-                <el-table-column prop="title" label="题目名称" width="340" header-align="center" align="center">
-                </el-table-column>
-                <el-table-column prop="type" label="题目类型" width="340" header-align="center" align="center">
-                </el-table-column>
+            <el-table :data="tableData.slice((currentPage-1)*pageSize,currentPage*pageSize)" title="训练">
+              <el-table-column prop="id" label="#" width="60" header-align="center"></el-table-column>
+              <el-table-column prop="title" label="题目名称" header-align="center" align="center"></el-table-column>
+              <el-table-column prop="type" label="题目类型" width="300" header-align="center" align="center"></el-table-column>
+              <el-table-column prop="difficulty" label="难度" width="300" header-align="center" align="center"></el-table-column>
+
+              <el-table-column prop="number" label="完成人数" width="300" header-align="center" align="center"></el-table-column>
                 <el-table-column label="操作" width="100">
                     <template slot-scope="scope">
                         <el-button type="text" size="small">查看</el-button>
                     </template>
                 </el-table-column>
             </el-table>
+          <el-pagination
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+            :current-page="currentPage"
+            :page-sizes="[5,10]"
+            :page-size="pageSize"
+            layout="total, sizes, prev, pager, next, jumper"
+            :total="tableData.length">
+          </el-pagination>
         </div>
     </el-col>
     <el-col :span="1">
@@ -43,14 +53,19 @@ export default {
             id: '1',
             has_pictures: '0',
             urls: '',
-            answer: 'answer'
-        }, {
+            answer: 'answer',
+            difficulty:'Hard',
+            number:'23'
+        },
+          {
             title: '迷宫',
             type: '填空题',
             id: '2',
             has_pictures: '0',
             urls: '',
-            answer: 'answer'
+            answer: 'answer',
+            difficulty:'Easy',
+            number:'34'
         }, {
             title: '划水',
             content: '这是一个选择题',
@@ -66,6 +81,8 @@ export default {
             D: '选项D',
             E: '选项E',
             F: '选项F',
+            difficulty:'Easy',
+            number:'46'
         }, {
             title: '完全平方数',
             content: '这是一个判断题',
@@ -73,31 +90,9 @@ export default {
             id: '4',
             urls: '',
             has_pictures: '0',
-            answer: '1'
-        }, {
-            title: '完全平方数',
-            content: '这是一个判断题',
-            type: '判断题',
-            id: '4',
-            urls: '',
-            has_pictures: '0',
-            answer: '1'
-        }, {
-            title: '完全平方数',
-            content: '这是一个判断题',
-            type: '判断题',
-            id: '4',
-            urls: '',
-            has_pictures: '0',
-            answer: '1'
-        }, {
-            title: '完全平方数',
-            content: '这是一个判断题',
-            type: '判断题',
-            id: '4',
-            urls: '',
-            has_pictures: '0',
-            answer: '1'
+            answer: '1',
+            difficulty:'Medium',
+            number:'29'
         }, {
             title: '钝形三角形',
             content: '这是一个判断题',
@@ -105,7 +100,9 @@ export default {
             id: '5',
             urls: '',
             has_pictures: '0',
-            answer: '1'
+            answer: '1',
+            difficulty:'Easy',
+            number:'41'
         }, {
             title: '组合游戏',
             content: '这是一个判断题',
@@ -113,7 +110,9 @@ export default {
             id: '6',
             urls: '',
             has_pictures: '0',
-            answer: '1'
+            answer: '1',
+            difficulty:'Hard',
+            number:'17'
         }, {
             title: '线段树',
             content: '这是一个判断题',
@@ -121,7 +120,9 @@ export default {
             id: '7',
             urls: '',
             has_pictures: '0',
-            answer: '1'
+            answer: '1',
+            difficulty:'Hard',
+            number:'19'
         }, {
             title: '打气球',
             content: '这是一个判断题',
@@ -129,16 +130,59 @@ export default {
             id: '8',
             urls: '',
             has_pictures: '0',
-            answer: '1'
+            answer: '1',
+            difficulty:'Medium',
+            number:'31'
+        },{
+          title: '杨辉三角',
+          content: '这是一个判断题',
+          type: '填空题',
+          id: '9',
+          urls: '',
+          has_pictures: '0',
+          answer: '1',
+          difficulty:'Hard',
+          number:'23'
+        }, {
+          title: '二叉树',
+          content: '这是一个判断题',
+          type: '简答题',
+          id: '10',
+          urls: '',
+          has_pictures: '0',
+          answer: '1',
+          difficulty:'Easy',
+          number:'56'
+        }, {
+          title: '迷宫',
+          content: '这是一个判断题',
+          type: '选择题',
+          id: '11',
+          urls: '',
+          has_pictures: '0',
+          answer: '1',
+          difficulty:'Hard',
+          number:'26'
         }];
         return {
-            tableData: item
+          tableData: item,
+          currentPage:1,
+          pageSize:5
         }
     },
     components: {
         recommendedPath,
         myProgress
+    },
+    methods: {
+    handleSizeChange(val) {
+      this.pageSize = val;
+    },
+    handleCurrentChange(val) {
+      this.currentPage = val;
     }
+  }
+
 }
 </script>
 
