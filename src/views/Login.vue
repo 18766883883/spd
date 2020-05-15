@@ -110,7 +110,7 @@
                   if(res.data == 'success'){
                     result=true;
                     console.log(result);
-                    this.$router.push({name:'StudentMain',params:{userId:id}});
+                    this.$router.push({name:'TeacherMain',params:{userId:id}});
                   }else {
                     alert("用户名或密码错误");
                   }
@@ -128,7 +128,7 @@
                   if(res.data == 'success'){
                     result=true;
                     console.log(result);
-                    this.$router.push({name:'StudentMain',params:{userId:id}});
+                    this.$router.push({name:'AdminMain'});
                   }else {
                     alert("用户名或密码错误");
                   }
@@ -149,22 +149,12 @@
   }
 </script>
 <style>
-  .el-row {
-    margin-bottom: 20px;
-  &:last-child {
-     margin-bottom: 0;
-   }
-  }
   .el-col {
     border-radius: 4px;
   }
   .bg-purple-dark {
     background: #99a9bf;
   }
-  a{
-    text-decoration: none;
-  }
-
   .router-link-active {
     text-decoration: none;
   }

@@ -18,6 +18,8 @@ import ChoiceQuestion from "../components/Question/Questions/ChoiceQuestion";
 import GetTask from "../components/Task/GetTask";
 import UploadTask from "../components/Task/UploadTask";
 import Rank from "../components/Task/Rank";
+import TeacherClass from "../views/Teacher/Class/TeacherClass";
+import QuestionTraining from "../components/QuestionTraining/QuestionTraining";
 Vue.use(VueRouter);
 
 export default new VueRouter({
@@ -105,12 +107,32 @@ export default new VueRouter({
     {
       path:'/tea_main',
       name:'TeacherMain',
-      component: MainTea
+      component: MainTea,
+      children:[
+        {
+          path: '/tea_main/tea_list/:userId',
+          name: 'TeacherList',
+          props: true,
+          components: {
+            default: TeacherClass
+          }
+        }
+      ]
     },
     {
       path:'/adm_main',
       name:'AdminMain',
-      component: MainAdm
+      component: MainAdm,
+      children:[
+        {
+          path: '/adm_main/adm_question',
+          name: 'AdmQuestion',
+          props: true,
+          components: {
+            default: QuestionTraining
+          }
+        }
+      ]
     },
     {
       path:'*',
